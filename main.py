@@ -53,24 +53,25 @@ for user in users:
     if not clone_successful:
         continue
 
+    time.sleep(3)
+
+    # Run the tests, collecting stdout and stderr
+    stdout = b""
+    stderr = b""
+    test_process = subprocess.Popen(
+        [
+            "python",
+            os.path.join("tests", "test.py"),
+        ],
+        cwd=os.path.join(repo_path, "homework"),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+
     try:
-        time.sleep(3)
-
-        # Run the tests, collecting stdout and stderr
-        stdout = b""
-        stderr = b""
-        test_process = subprocess.Popen(
-            [
-                "python",
-                os.path.join("tests", "test.py"),
-            ],
-            cwd=os.path.join(repo_path, "homework"),
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-        )
-
         # Hope for the best
         success = True
+
         try:
             # Retrieve stdout and stderr
             stdout, stderr = test_process.communicate(timeout=10)

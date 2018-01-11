@@ -63,7 +63,7 @@ for user in users:
             "python",
             os.path.join("tests", "test.py"),
         ],
-        cwd=os.path.join(repo_path, "homework"),
+        cwd=repo_path,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
     )

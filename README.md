@@ -1,6 +1,6 @@
 # Python Grader
 
-This script runs multiple students' assignments from a git server, runs tests on them, and generates a series of good/bad reports to indicate whether the student passed all of the tests. For students that did
+This script clones multiple students' assignments from a git server, runs tests on them, and generates a series of good/bad reports to indicate whether the student passed all of the tests. For students that did
 not pass all of the tests, a report will be generated that provides all test output.
 
 This script is provided for educational purposes and does not necessarily demonstrate best engineering practices, etc.

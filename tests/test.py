@@ -14,7 +14,7 @@ class DemonstrationTestCase(unittest.TestCase):
         self.assertTrue(True)
 
     def test_fails(self):
-        self.assertEquals(3, 1+1)
+        self.assertEqual(3, 1+1)
 
 if __name__ == '__main__':
     unittest.main()

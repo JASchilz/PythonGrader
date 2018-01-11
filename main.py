@@ -92,8 +92,11 @@ for user in users:
         contents = (stderr.decode().replace("\r\n", "\n") + "\n\n" + stdout.decode().replace("\r\n", "\n"))
 
         # Remove any existing good/bad reports
-        subprocess.call(["rm", bad_result_path])
-        subprocess.call(["rm", good_result_path])
+        for file_path in [bad_result_path, good_result_path]:
+            try:
+                os.unlink(file_path)
+            except FileNotFoundError:
+                pass
 
         if success:
             result_path = good_result_path

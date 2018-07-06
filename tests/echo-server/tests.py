@@ -1,10 +1,25 @@
 from echo_client import client
 import socket
 import unittest
+import subprocess
 
 
 class EchoTestCase(unittest.TestCase):
     """tests for the echo server and client"""
+
+    def setUp(self):
+        self.server_process = subprocess.Popen(
+            [
+                "python",
+                # os.path.join("tests", "tests.py"),
+                "echo_server.py"
+            ],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+        )
+
+    def tearDown(self):
+        self.server_process.kill()
 
     def send_message(self, message):
         """Attempt to send a message using the client

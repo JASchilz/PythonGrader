@@ -3,10 +3,9 @@ import os
 import time
 import sys
 
-# The server for cloning student files and your username on that server.
-# For example, you usually clone files from github as 'git@github.com'
-git_user = "git"
-git_server = "github.com"
+# The server for cloning student files. For example, you usually clone from
+# the server "https://github.com"
+git_server = "https://github.com"
 
 if len(sys.argv) is not 3:
     print("usage: python {} project-name users-file.txt".format(sys.argv[0]))
@@ -41,7 +40,15 @@ for user in users:
         [
             "git",
             "clone",
-            "{}@{}:{}/{}".format(git_user, git_server, user, project_name),
+            "{}/{}/{}".format(git_server, user, project_name),
+            repo_path,
+        ]
+    )
+
+    subprocess.call(
+        [
+            "cp",
+            os.path.join("tests", project_name, "tests.py"),
             repo_path,
         ]
     )
@@ -58,10 +65,12 @@ for user in users:
     # Run the tests, collecting stdout and stderr
     stdout = b""
     stderr = b""
+
     test_process = subprocess.Popen(
         [
             "python",
-            os.path.join("tests", "test.py"),
+            #os.path.join("tests", "tests.py"),
+            "tests.py"
         ],
         cwd=repo_path,
         stdout=subprocess.PIPE,
